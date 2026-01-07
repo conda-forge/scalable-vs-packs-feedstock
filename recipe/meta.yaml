@@ -5,13 +5,14 @@
 
 # gonna have to change these every time we repack new SVS packages
 {% set intel_buildnumber = "0" %}
-{% set build_string = "gdca8515" %}
-{% set version = "0.0.9" %}
+{% set build_string = "g334e1ca" %}
+{% set version = "0.1.0" %}
 {% set md5_map = {
-  "py310": "27760bcee0a33a29f9298d1c36dc20b0",
-  "py311": "567aed55f1f1a6b1eac8a206afc19387",
-  "py312": "e6384258f4ba52a5d0a4f3209f00c36c",
-  "py313": "3f2ea4c27ae56f4e0d923f6d9c9a6b22"
+  "py310": "004e747d9829b6511bb8bb1185d4c4ed",
+  "py311": "43725b6b482ec9d52d0f86c9de7fd03d",
+  "py312": "fd16ad86f366750213c8c85645abbb7f",
+  "py313": "506f783578d8bcb164a2cb9edd523a47",
+  "py314": "5f3cf2b574b004ea928db960bd75187c"
 } %}
 
 # builds off above variables
