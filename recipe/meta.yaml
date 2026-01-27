@@ -4,6 +4,7 @@
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 
 # gonna have to change these every time we repack new SVS packages
+# scalable-svs repack info
 {% set intel_buildnumber = "0" %}
 {% set build_string = "g334e1ca" %}
 {% set version = "0.1.0" %}
@@ -14,6 +15,12 @@
   "py313": "506f783578d8bcb164a2cb9edd523a47",
   "py314": "5f3cf2b574b004ea928db960bd75187c"
 } %}
+# libsvs repack info
+{% set libsvs_build_string = intel_buildnumber %}
+{% set libsvs_md5 = "e9ca9ee42913071d2877aee44488a9af" %}
+# libsvs-runtime repack info
+{% set libsvs_runtime_build_string = "g613ed17" %}
+{% set libsvs_runtime_md5 = "a70b92dcc9382774e0aab407bfd2afcd" %}
 
 # builds off above variables
 {% set url_string =  build_string + py_tag + "_" + intel_buildnumber %}
@@ -27,6 +34,14 @@ source:
   - url: {{ intel_ch }}/{{ target_platform }}/scalable-vs-{{ version }}-{{ url_string }}.conda
     folder: scalable-vs
     md5: {{ md5_map[py_tag] }}
+    no_hoist: true
+  - url: {{ intel_ch }}/{{ target_platform }}/libsvs-{{ version }}-{{ libsvs_build_string }}.conda
+    folder: libsvs
+    md5: {{ libsvs_md5 }}
+    no_hoist: true
+  - url: {{ intel_ch }}/{{ target_platform }}/libsvs-runtime-{{ version }}-{{ libsvs_runtime_build_string }}.conda
+    folder: libsvs-runtime
+    md5: {{ libsvs_runtime_md5 }}
     no_hoist: true
 
 build:
@@ -86,6 +101,57 @@ outputs:
         - toml
       commands:
         - python -c "import sys,os; print('Python:',sys.version); import svs; print('svs ok', svs.library_version())"
+
+  - name: libsvs
+    version: {{ version }}
+    script: repack_libsvs.sh
+    number: {{ cf_buildnumber }}
+    build:
+      skip: True  # [not linux64]
+    requirements:
+      host:
+        - conda-package-handling
+      run:
+        - python >=3.10
+    about:
+      home: https://intel.github.io/ScalableVectorSearch/index.html
+      license: Intel Simplified Software License (Version October 2022)
+      license_file:
+        - libsvs/info/licenses/distributions/LICENSE
+        - libsvs/info/licenses/ScalableVectorSearch/THIRD-PARTY-PROGRAMS
+      summary: Scalable Vector Search library
+      dev_url: https://github.com/intel/ScalableVectorSearch
+      doc_url: https://intel.github.io/ScalableVectorSearch/index.html
+    test:
+      commands:
+        - test -f $PREFIX/lib/libsvs_shared_library.so
+        - test -f $PREFIX/lib/libsvs_static_library.a
+        - test -f $PREFIX/include/svs/leanvec/leanvec.h
+
+  - name: libsvs-runtime
+    version: {{ version }}
+    script: repack_libsvs_runtime.sh
+    number: {{ cf_buildnumber }}
+    build:
+      skip: True  # [not linux64]
+    requirements:
+      host:
+        - conda-package-handling
+      run:
+        - python >=3.10
+    about:
+      home: https://intel.github.io/ScalableVectorSearch/index.html
+      license: Intel Simplified Software License (Version October 2022)
+      license_file:
+        - libsvs-runtime/info/licenses/distributions/LICENSE
+        - libsvs-runtime/info/licenses/ScalableVectorSearch/THIRD-PARTY-PROGRAMS
+      summary: Scalable Vector Search runtime library
+      dev_url: https://github.com/intel/ScalableVectorSearch
+      doc_url: https://intel.github.io/ScalableVectorSearch/index.html
+    test:
+      commands:
+        - test -f $PREFIX/lib/libsvs_runtime.so
+        - test -f $PREFIX/include/svs/runtime/api_defs.h
 
 # pleases the linter
 about:
