@@ -172,6 +172,7 @@ outputs:
       ignore_run_exports:
         - python
         - libgomp
+        - _openmp_mutex
     requirements:
       host:
         - conda-package-handling
