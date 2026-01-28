@@ -4,10 +4,3 @@ github:
 conda_build:
   error_overlinking: true
 conda_forge_output_validation: true
-outputs:
-  scalable-vs:
-    - linux-64
-  libsvs:
-    - linux-64
-  libsvs-runtime:
-    - linux-64
