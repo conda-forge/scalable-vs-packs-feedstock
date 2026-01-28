@@ -181,6 +181,7 @@ outputs:
         - libstdcxx
         - libgcc
         - libgomp
+        - _openmp_mutex
     about:
       home: https://intel.github.io/ScalableVectorSearch/index.html
       license: Intel Simplified Software License (Version October 2022)
