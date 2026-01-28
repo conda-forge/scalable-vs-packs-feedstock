@@ -119,6 +119,8 @@ outputs:
         - conda-package-handling
       run:
         - python >=3.10
+        - libstdcxx
+        - libgcc
     about:
       home: https://intel.github.io/ScalableVectorSearch/index.html
       license: Intel Simplified Software License (Version October 2022)
@@ -146,6 +148,8 @@ outputs:
         - conda-package-handling
       run:
         - python >=3.10
+        - libstdcxx
+        - libgcc
     about:
       home: https://intel.github.io/ScalableVectorSearch/index.html
       license: Intel Simplified Software License (Version October 2022)
