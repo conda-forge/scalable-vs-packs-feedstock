@@ -171,6 +171,7 @@ outputs:
         - $RPATH/libc.so.6
       ignore_run_exports:
         - python
+        - libgomp
     requirements:
       host:
         - conda-package-handling
