@@ -1,11 +1,11 @@
 
-{% set cf_buildnumber = "0" %}
+{% set cf_buildnumber = "1" %}
 {% set py_tag = "py" + PY_VER|replace('.','') %}
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 
 # gonna have to change these every time we repack new SVS packages
 # scalable-vs repack info
-{% set intel_buildnumber = "1" %}
+{% set intel_buildnumber = "0" %}
 {% set build_string = "g334e1ca" %}
 {% set version = "0.1.0" %}
 {% set md5_map = {
