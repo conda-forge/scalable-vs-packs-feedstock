@@ -5,7 +5,7 @@
 
 # gonna have to change these every time we repack new SVS packages
 # scalable-svs repack info
-{% set intel_buildnumber = "0" %}
+{% set intel_buildnumber = "1" %}
 {% set build_string = "g334e1ca" %}
 {% set version = "0.1.0" %}
 {% set md5_map = {
