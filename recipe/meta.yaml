@@ -209,7 +209,7 @@ outputs:
         - |
           cat > CMakeLists.txt << 'EOF'
           cmake_minimum_required(VERSION 3.24)
-          project(test_svs_runtime)
+          project(test_svs_runtime LANGUAGES NONE)
           find_package(svs_runtime REQUIRED)
           message(STATUS "Successfully found svs_runtime package")
           EOF
