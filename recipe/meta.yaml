@@ -197,9 +197,24 @@ outputs:
       dev_url: https://github.com/intel/ScalableVectorSearch
       doc_url: https://intel.github.io/ScalableVectorSearch/index.html
     test:
+      requires:
+        - python 3.13.* # Ensures installability on pythons older than most recent, this version can be incremented over time
+        - cmake 3.*
+        - make
       commands:
+        # Validate file installation
         - test -f $PREFIX/lib/libsvs_runtime.so
         - test -f $PREFIX/include/svs/runtime/api_defs.h
+        # Validate CMake find_package(svs_runtime) works
+        - |
+          cat > CMakeLists.txt << 'EOF'
+          cmake_minimum_required(VERSION 3.24)
+          project(test_svs_runtime)
+          find_package(svs_runtime REQUIRED)
+          message(STATUS "Successfully found svs_runtime package")
+          EOF
+        - cmake . -DCMAKE_PREFIX_PATH=$PREFIX
+        - test -f CMakeCache.txt
 
 # pleases the linter
 about:
