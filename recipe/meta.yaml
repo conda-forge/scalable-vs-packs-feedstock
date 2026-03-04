@@ -1,5 +1,5 @@
 
-{% set cf_buildnumber = "1" %}
+{% set cf_buildnumber = "2" %}
 {% set py_tag = "py" + PY_VER|replace('.','') %}
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 
