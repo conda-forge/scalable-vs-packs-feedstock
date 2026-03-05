@@ -198,7 +198,6 @@ outputs:
       doc_url: https://intel.github.io/ScalableVectorSearch/index.html
     test:
       requires:
-        - python 3.13.* # Ensures installability on pythons older than most recent, this version can be incremented over time
         - cmake 3.*
         - make
       commands:
