@@ -1,25 +1,26 @@
 
-{% set cf_buildnumber = "2" %}
+{% set cf_buildnumber = "0" %}
 {% set py_tag = "py" + PY_VER|replace('.','') %}
 {% set intel_ch = "https://software.repos.intel.com/python/conda" %}
 
 # gonna have to change these every time we repack new SVS packages
 # scalable-vs repack info
 {% set intel_buildnumber = "0" %}
-{% set build_string = "g62f5782" %}
-{% set version = "0.2.0" %}
+{% set build_string = "gc187b54" %}
+{% set version = "0.3.0" %}
 {% set sha256_map = {
-  "py310": "1f7f0c71e6cfc755688a8990ec48ed82504b2a3e6a4f0a946d285438a19d0be2",
-  "py311": "acf036277bd8830e288aa892eae433318c3b65d3dab5a08798d5b6dfa2363509",
-  "py312": "15e0b407e54a26147ca072e52f6369d09e8c312ae01c5daa4dae7ae44874e53b",
-  "py313": "e8944825469ef6de24dce58f600b96cdb9ef7ea49da91030cfbf4529afd51348"
+  "py310": "181c3e0419d1cd72fa19a6b95e998b7e3432de1a342d8b5dfa86558b44a28c4f",
+  "py311": "f917fc62379487619de8efa59bf54e8329a83c6ed0d4430e962c910b19368b3f",
+  "py312": "c1b3bb283a37d68db731fa739596dc093b697a91dbec7a7a9a13a1bb2147b11d",
+  "py313": "c903763974fc2d56179cf49dae87513bc0577703c69dcdc333f5b4c36b9788c7",
+  "py314": "e43280d0971ea40a2a77d605addc8e5d1380636969850e67f915fc69275be509"
 } %}
 # libsvs repack info
-{% set libsvs_build_string = "gd549b83" %}
-{% set libsvs_sha256 = "8ec83ca9e311ad642b2fd6fe20fb27c0021fb679d508bc5f7b3a1a55c4cb8581" %}
+{% set libsvs_build_string = "gc187b54" %}
+{% set libsvs_sha256 = "25e910ae66be3b11eb31291642a1ded22ad9d67072039fd671da2432af0e7e41" %}
 # libsvs-runtime repack info
-{% set libsvs_runtime_build_string = "gd549b83" %}
-{% set libsvs_runtime_sha256 = "4e11657eff0ec055ee12845026a61313ad919ff1181514ef2f44453e87658e86" %}
+{% set libsvs_runtime_build_string = "gc187b54" %}
+{% set libsvs_runtime_sha256 = "b4f9b6b6c3cfcd12f326b473048f85d5211f7fa54942474aeae66839f500ecdb" %}
 
 # builds off above variables
 {% set url_string =  build_string + py_tag + "_" + intel_buildnumber %}
@@ -51,7 +52,7 @@ build:
   number: {{ cf_buildnumber }}
   binary_relocation: false
   detect_binary_files_with_prefix: false
-  skip: True  # [not (linux64) or py>313]
+  skip: True  # [not linux64]
   missing_dso_whitelist:
     - /lib64/ld-linux-x86-64.so.2
     - /lib64/libpthread.so.0
