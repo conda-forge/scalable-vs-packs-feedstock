@@ -225,6 +225,7 @@ about:
 extra:
   feedstock-name: scalable-vs-packs
   recipe-maintainers:
+    - yuejiaointel
     - jharlow-intel
     - napetrov
     - mihaic
